@@ -22,14 +22,13 @@ monthly_challanges = {
 
 
 def monthly_challange_by_num(request, month):
-    if month == 0:
-        return HttpResponseNotFound(f'404 month {month} not found')
-    try:
-        months = list(monthly_challanges.keys())
-        redirect_month = months[month-1]
-        return HttpResponseRedirect('/challanges/' + redirect_month)
-    except IndexError:
-        return HttpResponseNotFound(f'404 month {month} not found')
+    months = list(monthly_challanges.keys())
+
+    if month > len(months) or month <= 0:
+        return HttpResponseNotFound(f'404 {month} is not a valid month!')
+    redirect_month = months[month-1]
+    return HttpResponseRedirect('/challanges/' + redirect_month)
+
 
 def monthly_challange(request, month):
     try:
