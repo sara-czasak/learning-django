@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 
 
 monthly_challanges = {
@@ -27,7 +28,9 @@ def monthly_challange_by_num(request, month):
     if month > len(months) or month <= 0:
         return HttpResponseNotFound(f'404 {month} is not a valid month!')
     redirect_month = months[month-1]
-    return HttpResponseRedirect('/challanges/' + redirect_month)
+    # Create dynamic url
+    redirect_url = reverse('monthly-challange', args=[redirect_month])
+    return HttpResponseRedirect(redirect_url)
 
 
 def monthly_challange(request, month):
