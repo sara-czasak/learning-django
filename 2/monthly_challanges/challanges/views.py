@@ -23,15 +23,11 @@ monthly_challanges = {
 
 
 def index(request):
-    list_items = ""
     months = list(monthly_challanges.keys())
 
-    for month in months:
-        month_path = reverse('monthly-challange', args=[month])
-        list_items += f'<li><a href="{month_path}">{month.capitalize()}</a></li>\n'
-
-    response_data = f"<ul>{list_items}</ul>"
-    return HttpResponse(response_data)
+    return render(request, 'challanges/index.html', {
+        'months': months,
+    })
 
 
 def monthly_challange_by_num(request, month):
