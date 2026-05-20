@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-from django.template.loader import render_to_string
 
 
 monthly_challanges = {
@@ -49,7 +48,8 @@ def monthly_challange_by_num(request, month):
 def monthly_challange(request, month):
     try:
         challange_text = monthly_challanges[month]
-        response_data = render_to_string('challanges/challange.html')
-        return HttpResponse(response_data)
+        return render(request, 'challanges/challange.html', {
+            'text': challange_text,
+        })
     except KeyError:
         return HttpResponseNotFound(f'<h1>404 {month} is not a valid month!</h1>')
