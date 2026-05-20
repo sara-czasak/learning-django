@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
 {% block page_title%}
-
 {% endblock %}
 
 {% block content %}
+
+<!--{% include "challanges/includes/header.html" with active_page="index" %}-->
+
     <h1>All Challanges:</h1>
         <ul>
             {% for month in months %}

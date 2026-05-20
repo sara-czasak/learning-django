@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewpoint" content="width=device-width, initial-scale=1.0"
-    <title></title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block page_title%}
+{% endblock %}
+
+{% block content %}
+
+<!--    {% include "challanges/includes/header.html" with active_page="challange" %}-->
+
     <h1>{{ month_name|title }} Challange</h1>
     {% if text == None %}
     <h2>No challange for {{ month_name|title }}</h2>
     {% else %}
     <h2>{{ text }}</h2>
     {% endif %}
-</body>
-</html>
+{% endblock %}
